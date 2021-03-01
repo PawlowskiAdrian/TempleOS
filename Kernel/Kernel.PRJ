@@ -1,13 +1,13 @@
 //Compile this by calling $LK,"BootHDIns",A="MN:BootHDIns"$().
-//Don't do it directly.  See $LK,"Cmp(\"/Kernel/Kernel\")",A="FF:::/Adam/Opt/Boot/BootHDIns.HC,Cmp(\"/Kernel/Kernel\""$.
+//Don't do it directly.  See $LK,"Comp(\"/Kernel/Kernel\")",A="FF:::/Zenith/Boot/BootHDIns.CC,Comp(\"/Kernel/Kernel\""$.
 
 #exe {
-  Cd(__DIR__);;
-  Option(OPTf_WARN_PAREN,ON);
-  Option(OPTf_WARN_DUP_TYPES,ON);
-  #include "KCfg"
-  CKCfg *kernel_cfg;
-  kernel_cfg=KCfgNew;
+	Cd(__DIR__);;
+	Option(OPTf_WARN_PAREN,		ON);
+	Option(OPTf_WARN_DUP_TYPES, ON);
+	#include "KConfig"
+	CKConfig *kernel_config;
+	kernel_config = KConfigNew;
 };
 
 #include "KernelA.HH"
@@ -16,26 +16,24 @@
 #include "KStart64"
 #include "KMathA"
 #include "KUtils"
-#exe {Option(OPTf_KEEP_PRIVATE,ON);};
+#exe {Option(OPTf_KEEP_PRIVATE,			ON);};
 #include "/Compiler/CompilerA.HH"
-#exe {Option(OPTf_EXTERNS_TO_IMPORTS,ON);};
+#exe {Option(OPTf_EXTERNS_TO_IMPORTS,	ON);};
 #include "/Compiler/CompilerB.HH"
-#exe {Option(OPTf_EXTERNS_TO_IMPORTS,OFF);};
-#exe {Option(OPTf_KEEP_PRIVATE,OFF);};
+#exe {Option(OPTf_EXTERNS_TO_IMPORTS,	OFF);};
+#exe {Option(OPTf_KEEP_PRIVATE,			OFF);};
 #include "KernelB.HH"
-#include "KExts"
+#include "KExterns"
 #include "StrA"
-#include "KGlbls"
+#include "KGlobals"
 #include "KMathB"
 #include "Sched"
-#include "Mem/MakeMem"
+#include "Memory/MakeMemory"
 #include "FontStd"
-#include "FontCyrillic"
 #include "StrB"
 #include "KHashA"
-#include "KInts"
+#include "KInterrupts"
 #include "KDataTypes"
-#include "Compress"
 #include "KHashB"
 #include "KLoad"
 #include "KDate"
@@ -44,11 +42,11 @@
 #include "KDefine"
 #include "Display"
 #include "KMisc"
-#include "KDbg"
+#include "KDebug"
 #include "KeyDev"
 #include "KExcept"
 #include "SerialDev/MakeSerialDev"
-#include "QSort"
+#include "QuickSort"
 #include "KTask"
 #include "Job"
 #include "PCIBIOS"
@@ -58,4 +56,4 @@
 #include "FunSeg"
 #include "KMain"
 
-#exe {KCfgDel(kernel_cfg);};
+#exe {KConfigDel(kernel_config);};
