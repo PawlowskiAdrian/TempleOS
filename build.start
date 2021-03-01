@@ -1,0 +1,9 @@
+qemu-system-x86_64 \
+	-cdrom out/Shrine.ISO \
+	-boot d \
+	-machine kernel_irqchip=off \
+	-smp cores=4 \
+	-m 2048 \
+	-rtc base=localtime \
+	-soundhw pcspk \
+	-netdev user,id=u1 -device pcnet,netdev=u1
